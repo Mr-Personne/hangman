@@ -2,7 +2,6 @@ import random
 
 print('Hangman game start')
 
-tries = 6
 
 # open and get a random word from the text file
 text_file = open('sowpods.txt', 'r')
@@ -18,7 +17,7 @@ splitWord = list(randWord)
 # print('split word == ', splitWord)
 # will remove last element of a list (the empty space, in this case)
 splitWord.pop()
-print('split word == ', splitWord)
+# print('split word == ', splitWord)
 
 #setup user answer list
 userAnswer = []
@@ -26,18 +25,46 @@ wrongAnswers = []
 for item in splitWord:
     userAnswer.append('_')
 
-print('user answer == ', userAnswer)
-print('wrong guesses == ', wrongAnswers)
 
 def checkIfCorrect(userInput, tries):
-
+    global correct
     if userInput in splitWord:
 
         wordLen = len(splitWord)
         for i in range(wordLen):
             if userInput == splitWord[i]:
                 userAnswer[i] = userInput
+                correct = correct + 1
+
+        return tries
+
     else:
-        tries -= 1
         wrongAnswers.append(userInput)
+        tries -= 1
+        return tries
+        
             
+
+tries = 6
+correct = 0
+# game loop until no tries left
+while tries > 0:
+    print('user answer == ', userAnswer)
+    print('wrong guesses == ', wrongAnswers)
+    print('tries left == ', tries)
+
+    userLetter = input('What letter ? ==> ') or ' '
+    userLetter = userLetter.capitalize()
+
+    tries = checkIfCorrect(userLetter, tries)
+    # print('tries test = ', tries)
+    #check if user found all letters and wins
+    if correct == len(splitWord):
+        print('Correct answer == ', splitWord)
+        print('you win')
+        break
+
+
+else:
+    print('Correct answer == ', splitWord)
+    print('you lose, try again')
