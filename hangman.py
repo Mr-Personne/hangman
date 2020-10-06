@@ -19,3 +19,12 @@ splitWord = list(randWord)
 # will remove last element of a list (the empty space, in this case)
 splitWord.pop()
 print('split word == ', splitWord)
+
+#setup user answer list
+userAnswer = []
+wrongAnswers = []
+for item in splitWord:
+    userAnswer.append('_')
+
+print('user answer == ', userAnswer)
+print('wrong guesses == ', wrongAnswers)
