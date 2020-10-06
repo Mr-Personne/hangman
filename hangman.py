@@ -3,11 +3,13 @@ import random
 print('Hangman game start')
 
 tries = 6
-randIndex = random.randint(0, 267750)
 
 # open and get a random word from the text file
 text_file = open('sowpods.txt', 'r')
 wordlist = text_file.readlines()
+wordlistLen = len(wordlist) - 1
+# print('list len ==', wordlistLen)
+randIndex = random.randint(0, wordlistLen)
 randWord = wordlist[randIndex]
 # print('word rand == ', randWord)
 
