@@ -28,3 +28,16 @@ for item in splitWord:
 
 print('user answer == ', userAnswer)
 print('wrong guesses == ', wrongAnswers)
+
+def checkIfCorrect(userInput, tries):
+
+    if userInput in splitWord:
+
+        wordLen = len(splitWord)
+        for i in range(wordLen):
+            if userInput == splitWord[i]:
+                userAnswer[i] = userInput
+    else:
+        tries -= 1
+        wrongAnswers.append(userInput)
+            
